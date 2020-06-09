@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   loading: false,
   message: null,
-  currentRoute: "",
+  currentRoute: "/",
 };
 
 export default INITIAL_STATE;

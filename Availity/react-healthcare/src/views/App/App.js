@@ -1,9 +1,10 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppHeader from "../../components/AppHeader/AppHeader";
 import Register from "../Register/Register";
 import Home from "../Home/Home";
+import Profile from "../Profile/Profile";
+import "./App.css";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </Router>
     </div>

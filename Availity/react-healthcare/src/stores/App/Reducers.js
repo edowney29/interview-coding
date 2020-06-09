@@ -4,33 +4,28 @@ import INITIAL_STATE from "./InitialState";
 function appReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOADING: {
-      return [
+      return {
         ...state,
-        {
-          loading: true,
-          message: null,
-        },
-      ];
+        loading: true,
+        message: null,
+      };
     }
     case ERROR: {
       const { message } = action.data;
-      return [
+      return {
         ...state,
-        {
-          loading: false,
-          message: message,
-        },
-      ];
+        loading: false,
+        message: message,
+      };
     }
-    case UPDATE_ROUTE:
-      return [
+    case UPDATE_ROUTE: {
+      return {
         ...state,
         ...action.data,
-        {
-          loading: false,
-          message: null,
-        },
-      ];
+        loading: false,
+        message: null,
+      };
+    }
     default:
       return state;
   }

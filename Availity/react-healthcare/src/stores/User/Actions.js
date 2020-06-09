@@ -18,6 +18,6 @@ export function error(message) {
   return { type: ERROR, data: { message } };
 }
 
-export function updateRoute(firstName, lastName, npiNumber, businessAddress, telephoneNumber, emailAddress) {
+export function updateUser(firstName, lastName, npiNumber, businessAddress, telephoneNumber, emailAddress) {
   return { type: UPDATE_USER, data: { firstName, lastName, npiNumber, businessAddress, telephoneNumber, emailAddress } };
 }

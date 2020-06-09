@@ -3,39 +3,65 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateRoute } from "../../stores/App/Actions";
-
 import "./AppHeader.css";
 
 class AppHeader extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.handleClick = this.handleClick.bind(this);
   }
 
-  // handleClick(event) {
-  //   this.setState({ value: event.target.value });
-  // }
+  componentDidMount() {
+    this.props.updateRoute(window.location.pathname);
+  }
 
   render() {
     const { currentRoute } = this.props;
 
     return (
-      <div class="custom-menu-wrapper">
-        <div class="pure-menu custom-menu custom-menu-top">
-          <a href="#" class="pure-menu-heading custom-menu-brand">Register User Example</a>
-          <a href="#" class="custom-menu-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+      <div className="custom-wrapper pure-g" id="menu">
+        <div className="pure-u-1 pure-u-md-1-3">
+          <div className="pure-menu">
+            <a href="#" className="pure-menu-heading custom-brand">
+              Register User Example
+            </a>
+            <a href="#" className="custom-toggle" id="toggle">
+              <s className="bar"></s>
+              <s className="bar"></s>
+            </a>
+          </div>
         </div>
-        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked" id="tuckedMenu">
-          <div class="custom-menu-screen"></div>
-          <ul class="pure-menu-list">
-            <li class="pure-menu-item">
-              <Link to="/" class="pure-menu-link">Home</Link>
-            </li>
-            <li class="pure-menu-item">
-              <Link to="/register" class="pure-menu-link">Register</Link>
-            </li>
-          </ul>
+        <div className="pure-u-1 pure-u-md-1-3">
+          <div className="pure-menu pure-menu-horizontal custom-can-transform">
+            <ul className="pure-menu-list">
+              <li class={`pure-menu-item ${currentRoute === "/" ? "pure-menu-selected" : ""}`}>
+                <Link to="/" className="pure-menu-link" onClick={(event) => this.props.updateRoute("/")}>
+                  Home
+                </Link>
+              </li>
+              <li class={`pure-menu-item ${currentRoute === "/register" ? "pure-menu-selected" : ""}`}>
+                <Link
+                  to="/register"
+                  className="pure-menu-link"
+                  onClick={(event) => this.props.updateRoute("/register")}
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="pure-u-1 pure-u-md-1-3">
+          <div className="pure-menu pure-menu-horizontal custom-menu-3 custom-can-transform">
+            <ul className="pure-menu-list">
+              <li className="pure-menu-item">
+                <a href="#" className="pure-menu-heading">
+                  {this.props.firstName === "" && this.props.lastName === ""
+                    ? ""
+                    : `${this.props.firstName} ${this.props.lastName}`}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     );
@@ -44,10 +70,15 @@ class AppHeader extends React.Component {
 
 AppHeader.propTypes = {
   currentRoute: PropTypes.string,
+  updateRoute: PropTypes.func,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
 };
 
 const mapStateToProps = (state, ownProps) => ({
   currentRoute: state.app.currentRoute,
+  firstName: state.user.firstName,
+  lastName: state.user.lastName,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

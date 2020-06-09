@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import App from './views/App/App';
 import CreateStore from './stores/index';
 import { Provider } from 'react-redux';
