@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { updateRoute } from "../../stores/App/Actions";
 
 function Home() {
   return (
@@ -18,4 +21,16 @@ function Home() {
   );
 }
 
-export default Home;
+Home.propTypes = {
+  updateRoute: PropTypes.func,
+};
+
+const mapStateToProps = (state, ownProps) => ({});
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateRoute: (currentRoute) => dispatch(updateRoute(currentRoute)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
