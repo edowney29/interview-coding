@@ -9,7 +9,7 @@ function Home(props) {
   return (
     <div className="splash-container">
       <div className="splash">
-        <h1 className="splash-head">Availity Healthcare</h1>
+        <h1 className="splash-head">Availity</h1>
         <p className="splash-subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         <p>
           <Link
