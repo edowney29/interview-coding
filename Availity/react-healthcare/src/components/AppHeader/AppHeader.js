@@ -24,10 +24,10 @@ class AppHeader extends React.Component {
             <a href="#" className="pure-menu-heading custom-brand">
               Register User Example
             </a>
-            <a href="#" className="custom-toggle" id="toggle">
+            {/* <a href="#" className="custom-toggle" id="toggle">
               <s className="bar"></s>
               <s className="bar"></s>
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="pure-u-1 pure-u-md-1-3">
@@ -47,6 +47,15 @@ class AppHeader extends React.Component {
                   Register
                 </Link>
               </li>
+              <li className="pure-menu-item">
+                <a
+                  className="pure-menu-link"
+                  href="https://github.com/edowney29/interview-assignments/tree/master/Availity/react-healthcare"
+                  target="_blank"
+                >
+                  GitHub
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -54,11 +63,11 @@ class AppHeader extends React.Component {
           <div className="pure-menu pure-menu-horizontal custom-menu-3 custom-can-transform">
             <ul className="pure-menu-list">
               <li className="pure-menu-item">
-                <a href="#" className="pure-menu-heading">
+                {/* <a href="#" className="pure-menu-heading">
                   {this.props.firstName === "" && this.props.lastName === ""
                     ? ""
                     : `${this.props.firstName} ${this.props.lastName}`}
-                </a>
+                </a> */}
               </li>
             </ul>
           </div>
