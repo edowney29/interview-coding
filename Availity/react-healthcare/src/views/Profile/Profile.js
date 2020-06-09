@@ -18,7 +18,7 @@ function Profile(props) {
 
   return (
     <div class="card">
-      <img src="https://picsum.photos/200/300" style={{ width: "100%" }} />
+      <img src="https://picsum.photos/200/200" style={{ width: "100%" }} />
       <h1>{`${user.firstName} ${user.lastName}`}</h1>
       <p class="title">{`${user.npiNumber}`}</p>
       <a href="#">
