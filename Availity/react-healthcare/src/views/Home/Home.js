@@ -5,14 +5,18 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { updateRoute } from "../../stores/App/Actions";
 
-function Home() {
+function Home(props) {
   return (
     <div className="splash-container">
       <div className="splash">
         <h1 className="splash-head">Availity Healthcare</h1>
         <p className="splash-subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         <p>
-          <Link to="/register" className="pure-button pure-button-primary">
+          <Link
+            to="/register"
+            className="pure-button pure-button-primary"
+            onClick={(event) => props.updateRoute("/register")}
+          >
             Get Started
           </Link>
         </p>
