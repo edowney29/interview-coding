@@ -1,2 +1,2 @@
 # interview-coding
- Coding assignments given by employers
+ Coding assignments given by potential employers
