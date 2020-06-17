@@ -1,71 +1,26 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
-import RestrictedRoute from 'rmw-shell/lib/containers/RestrictedRoute'
-import makeLoadable from 'rmw-shell/lib/containers/MyLoadable'
+import React, { lazy } from 'react'
+import PrivateRoute from 'base-shell/lib/components/PrivateRoute/PrivateRoute'
+import PublicRoute from 'base-shell/lib/components/PublicRoute/PublicRoute'
+import { Route } from 'react-router-dom'
 
-const MyLoadable = (opts, preloadComponents) =>
-  makeLoadable(
-    { ...opts, firebase: () => import('./firebase') },
-    preloadComponents
-  )
-
-const AsyncDashboard = MyLoadable({
-  loader: () => import('../pages/Dashboard'),
-})
-const AsyncAbout = MyLoadable({ loader: () => import('../pages/About') })
-const AsyncCompany = MyLoadable({
-  loader: () => import('../pages/Companies/Company'),
-})
-const AsyncCompanies = MyLoadable(
-  { loader: () => import('../pages/Companies/Companies') },
-  [AsyncCompany]
-)
-const AsyncTask = MyLoadable({ loader: () => import('../pages/Tasks/Task') })
-const AsyncTasks = MyLoadable(
-  { loader: () => import('../pages/Tasks/Tasks') },
-  [AsyncTask]
-)
+const SignIn = lazy(() => import('../pages/SignIn/SignIn'))
+const SignUp = lazy(() => import('../pages/SignUp/SignUp'))
+const PasswordReset = lazy(() => import('../pages/PasswordReset/PasswordReset'))
+const About = lazy(() => import('../pages/About/About'))
+const Home = lazy(() => import('../pages/Home/Home'))
 
 const routes = [
-  <RestrictedRoute type="private" path="/" exact component={AsyncDashboard} />,
-  <RestrictedRoute
-    type="private"
-    path="/dashboard"
+  <PublicRoute path="/signin" redirectTo="/" exact component={SignIn} />,
+  <PublicRoute path="/signup" redirectTo="/" exact component={SignUp} />,
+  <PublicRoute
+    path="/password_reset"
+    redirectTo="/"
     exact
-    component={AsyncDashboard}
+    component={PasswordReset}
   />,
-  <RestrictedRoute type="private" path="/about" exact component={AsyncAbout} />,
-  <RestrictedRoute
-    type="private"
-    path="/companies"
-    exact
-    component={AsyncCompanies}
-  />,
-  <RestrictedRoute
-    type="private"
-    path="/companies/edit/:uid"
-    exact
-    component={AsyncCompany}
-  />,
-  <RestrictedRoute
-    type="private"
-    path="/companies/create"
-    exact
-    component={AsyncCompany}
-  />,
-  <RestrictedRoute type="private" path="/tasks" exact component={AsyncTasks} />,
-  <RestrictedRoute
-    type="private"
-    path="/tasks/create"
-    exact
-    component={AsyncTask}
-  />,
-  <RestrictedRoute
-    type="private"
-    path="/tasks/edit/:uid"
-    exact
-    component={AsyncTask}
-  />,
+  <Route path="/about" exact component={About} />,
+  <PrivateRoute path="/home" exact component={Home} />,
 ]
 
 export default routes
