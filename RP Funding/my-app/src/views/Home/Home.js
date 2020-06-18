@@ -1,0 +1,40 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Home.css";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { updateRoute } from "../../stores/App/Actions";
+
+function Home(props) {
+  return (
+    <div className="splash-container">
+      <div className="splash">
+        <h1 className="splash-head">Availity</h1>
+        <p className="splash-subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>
+          <Link
+            to="/register"
+            className="pure-button pure-button-primary"
+            onClick={(event) => props.updateRoute("/register")}
+          >
+            Get Started
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+Home.propTypes = {
+  updateRoute: PropTypes.func,
+};
+
+const mapStateToProps = (state, ownProps) => ({});
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateRoute: (currentRoute) => dispatch(updateRoute(currentRoute)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

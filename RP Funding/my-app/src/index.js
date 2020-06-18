@@ -1,5 +1,24 @@
 import React from 'react'
-import { render } from 'react-dom'
-import App from './App'
+import ReactDOM from 'react-dom'
+import './index.css'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import App from './views/App/App'
+import CreateStore from './stores/index'
+import { Provider } from 'react-redux'
+import * as serviceWorker from './serviceWorker'
 
-render(<App />, document.getElementById('root'))
+const store = CreateStore()
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+)
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()
