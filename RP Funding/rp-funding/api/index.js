@@ -11,7 +11,7 @@ const _ = require('lodash')
 /**
  * server configuration
  */
-const models = require('./models/index')
+const models = require('./models/')
 // const auth = require('./policies/auth.policy')
 
 /**
