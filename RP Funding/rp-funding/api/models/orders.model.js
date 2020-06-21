@@ -24,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       timestamp: false,
+      freezeTableName: true,
     }
   )
   return orders

@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-      addres: {
+      address: {
         type: DataTypes.STRING,
       },
       city: {
@@ -21,6 +21,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       timestamp: false,
+      freezeTableName: true,
     }
   )
   return shippingaddress
