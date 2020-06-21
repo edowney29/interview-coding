@@ -1,9 +1,8 @@
 const ordersRouter = require('./orders.routes')
-const ordersStatusRouter = require('./orderstatus.routes')
-const shippingAddressRouter = require('./shippingaddress.routes')
+// const exampleRouter = require('./example.routes')
 
+// Import and setup all routers here with base /api route
 module.exports = (app) => {
   app.use('/api', ordersRouter)
-  app.use('/api', ordersStatusRouter)
-  app.use('/api', shippingAddressRouter)
+  // app.use('/api', exampleRouter)
 }
