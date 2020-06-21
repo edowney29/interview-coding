@@ -33,7 +33,7 @@ function About() {
         for taking the time to read this and if you would like to check out my github where this repository is please go
         to&nbsp;
         <Link
-          href="https://github.com/edowney29/interview-assignments/tree/master/RP%20Funding/rp-funding"
+          href="https://github.com/edowney29"
           target="_blank"
         >
           Eric Downey's GitHub
