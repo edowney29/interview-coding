@@ -48,7 +48,7 @@ app.get('*', (req, res, next) => {
 require('./routes')(app)
 
 server.listen(process.env.PORT || '8080', () => {
-  console.error(`Server is listening on port ${process.env.PORT || '8080'}`)
+  console.error(`Server is listening on port http://localhost:${process.env.PORT || '8080'}/`)
 })
 
 // Load models and check connections to the database
