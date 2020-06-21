@@ -4,8 +4,8 @@
   "author": "Eric Downey <edowney29@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "prestart": "cd app && yarn build",
     "start": "npm run nodemon",
-    "poststart": "cd app && yarn build",
     "dev": "cross-env NODE_ENV=development node ./api/index.js",
     "nodemon": "nodemon --exec npm run dev",
     "lint": "eslint ./api/. ./config/. ./test/.",
