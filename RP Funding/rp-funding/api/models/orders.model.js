@@ -5,6 +5,8 @@ module.exports = function (sequelize, DataTypes) {
       orderId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
       },
       orderStatusId: {
         type: DataTypes.INTEGER,

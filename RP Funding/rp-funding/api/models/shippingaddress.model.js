@@ -5,6 +5,8 @@ module.exports = function (sequelize, DataTypes) {
       shippingAddressId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
       },
       address: {
         type: DataTypes.STRING,
