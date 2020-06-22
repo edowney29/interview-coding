@@ -53,10 +53,19 @@ export default function CreateOrder(props) {
     }
   }
 
+  function onModalClose() {
+    setDescription(null)
+    setAddress(null)
+    setCity(null)
+    setState(null)
+    setZip(null)
+    props.onModalClose()
+  }
+
   return (
     <Modal
       open={props.modalOpen}
-      onClose={props.onModalClose}
+      onClose={onModalClose}
       className={classes.modal}
       closeAfterTransition
       BackdropComponent={Backdrop}
@@ -116,7 +125,7 @@ export default function CreateOrder(props) {
           />
 
           <Box style={{ padding: 15 }}>
-            <Button className={classes.buttonError} onClick={props.onModalClose} disabled={loading}>
+            <Button className={classes.buttonError} onClick={onModalClose} disabled={loading}>
               Cancel
             </Button>
             <Button
