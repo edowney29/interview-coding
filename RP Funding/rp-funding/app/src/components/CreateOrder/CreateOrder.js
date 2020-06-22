@@ -44,7 +44,6 @@ export default function CreateOrder(props) {
       setCity(null)
       setState(null)
       setZip(null)
-
       props.onOrderCreated(order)
       props.onModalClose()
     } catch (err) {
