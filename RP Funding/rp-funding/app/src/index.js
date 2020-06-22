@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker'
 
 const store = CreateStore()
 
+// Global theme for Material UI
 const theme = createMuiTheme({
   palette: {
     primary: {

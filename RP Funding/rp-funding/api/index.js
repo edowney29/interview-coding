@@ -1,6 +1,3 @@
-/**
- * third party libraries
- */
 const bodyParser = require('body-parser')
 const express = require('express')
 const helmet = require('helmet')
@@ -8,33 +5,19 @@ const http = require('http')
 const path = require('path')
 const cors = require('cors')
 const _ = require('lodash')
-/**
- * server configuration
- */
-const models = require('./models/')
+
+// Unused auth middleware
 // const auth = require('./policies/auth.policy')
 
-/**
- * express application
- */
 const app = express()
 const server = http.Server(app)
-
-// allow cross origin requests
-app.use(cors())
-
-// Secure express app
-app.use(helmet())
-
-// Parsing the request bodys
+app.use(cors()) // Allow cross origin requests
+app.use(helmet()) // Secure general express app
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Serve static build files
 app.use(express.static(path.join(__dirname, '../app/build')))
-
-// Secure your private routes with jwt authentication middleware
-// app.all('/private/*', (req, res, next) => auth(req, res, next))
 
 // Return index.html for all request unless it is an api request
 app.get('*', (req, res, next) => {
@@ -45,13 +28,16 @@ app.get('*', (req, res, next) => {
   }
 })
 
+// Load all route apis into server
 require('./routes')(app)
 
+// Listen on port for http request
 server.listen(process.env.PORT || '8080', () => {
   console.error(`Server is listening on port http://localhost:${process.env.PORT || '8080'}/`)
 })
 
-// Load models and check connections to the database
+// Load models and check connection to the database
+const models = require('./models/')
 models.sequelize
   .authenticate()
   .then(function () {

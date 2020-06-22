@@ -5,6 +5,7 @@ const basename = path.basename(module.filename)
 
 const sequelize = require('../../config/database')
 
+// Configure database models as based off Sequelize's recommendation
 const db = {}
 
 fs.readdirSync(__dirname)
