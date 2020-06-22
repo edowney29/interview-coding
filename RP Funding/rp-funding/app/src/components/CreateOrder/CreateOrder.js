@@ -39,6 +39,12 @@ export default function CreateOrder(props) {
       const order = { ...data.orders }
       order.orderstatus = data.orderstatus
       order.shippingaddress = data.shippingaddress
+      setDescription(null)
+      setAddress(null)
+      setCity(null)
+      setState(null)
+      setZip(null)
+
       props.onOrderCreated(order)
       props.onModalClose()
     } catch (err) {
@@ -79,14 +85,14 @@ export default function CreateOrder(props) {
             fullWidth
             label="Address"
             onChange={(event) => setAddress(event.target.value)}
-            inputProps={{ maxlength: 60 }}
+            inputProps={{ maxLength: 60 }}
             disabled={loading}
           />
           <TextField
             fullWidth
             label="City"
             onChange={(event) => setCity(event.target.value)}
-            inputProps={{ maxlength: 35 }}
+            inputProps={{ maxLength: 35 }}
             disabled={loading}
           />
           <TextField
@@ -106,7 +112,7 @@ export default function CreateOrder(props) {
             fullWidth
             label="Zip"
             onChange={(event) => setZip(event.target.value)}
-            inputProps={{ maxlength: 10 }}
+            inputProps={{ maxLength: 10 }}
             disabled={loading}
           />
 
