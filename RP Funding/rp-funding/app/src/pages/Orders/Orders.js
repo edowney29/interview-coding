@@ -53,7 +53,11 @@ function Orders() {
   }, [])
 
   function openGoogleMaps(shippingaddress) {
-    const str = `${shippingaddress.address} ${shippingaddress.city} ${shippingaddress.state} ${shippingaddress.zip}`
+    let str = ''
+    if (shippingaddress.address) str += shippingaddress.address + ' '
+    if (shippingaddress.city) str += shippingaddress.city + ' '
+    if (shippingaddress.state) str += shippingaddress.state + ' '
+    if (shippingaddress.zip) str += shippingaddress.zip + ' '
     googleInterface.openGoogleMaps(str)
   }
 

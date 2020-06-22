@@ -65,7 +65,7 @@ export default function CreateOrder(props) {
             <Typography variant="h6" style={{ float: 'left' }}>
               Create Order
             </Typography>
-            {loading && <CircularProgress style={{ float: 'right' }} />}
+            {loading && <CircularProgress style={{ float: 'right' }} size="30" />}
           </Box>
 
           <TextField
