@@ -68,6 +68,13 @@ function Orders() {
     })
   }
 
+  function validateShippingAddres(shippingaddress) {
+    if (!shippingaddress) return false
+    if (!shippingaddress.address && !shippingaddress.city && !shippingaddress.state && !shippingaddress.zip)
+      return false
+    return true
+  }
+
   return (
     <Container maxWidth={false}>
       <Toolbar className={classes.root}>
@@ -127,7 +134,7 @@ function Orders() {
                 <TableCell>{order.shippingaddress && order.shippingaddress.zip}</TableCell>
                 <TableCell>
                   <Button
-                    disabled={!order.shippingaddress}
+                    disabled={!validateShippingAddres(order.shippingaddress)}
                     variant="contained"
                     color="primary"
                     onClick={(event) => openGoogleMaps(order.shippingaddress)}
