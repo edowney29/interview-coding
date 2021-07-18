@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Eric Downey test</title>
+</head>
+
+<body>
+  <p>Please select the relevant text file...</p>
+  <input type="file" id="file-input" />
+  <div id="file-content"></div>
+
+  <script>
+    function readSingleFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const contents = e.target.result;
+        const lines = contents.split("\n");
+        const listPairs = countPairs(lines);
+        downloadContents(listPairs);
+      };
+      reader.readAsText(file);
+    }
+
+    function countPairs(lines = []) {
+      const mapArtistIndex = {};
+      const filterMapArtistIndex = {};
+      lines.forEach((line, lineIndex) => {
+        const csv = line.split(",");
+        csv.forEach((value) => {
+          if (!mapArtistIndex[value]) {
+            mapArtistIndex[value] = [];
+            mapArtistIndex[value].push(lineIndex);
+          } else {
+            mapArtistIndex[value].push(lineIndex);
+            if (mapArtistIndex[value].length >= 50) // Filter out relevant artist appearing at least 50 times; we only care about them
+              filterMapArtistIndex[value] = mapArtistIndex[value];
+          }
+        });
+      });
+
+      // console.info("Artist listed at least 50 times", filterMapArtistIndex)
+
+      const listOfParis = [];
+      Object.keys(filterMapArtistIndex).forEach((key1) => {
+        Object.keys(filterMapArtistIndex).forEach((key2) => {
+          let countPairs = 0;
+
+          if (key1 !== key2) {
+            // If a line index is included in another line index then we know that they are a pair in the same list
+            mapArtistIndex[key1].forEach((mapIndex) => {
+              if (mapArtistIndex[key2].includes(mapIndex))
+                countPairs += 1;
+            });
+
+            if (countPairs >= 50)
+              if (!listOfParis.includes(`${key1} and ${key2}`) && !listOfParis.includes(`${key2} and ${key1}`))
+                listOfParis.push(`${key1} and ${key2}`);
+          }
+        });
+      });
+
+      return listOfParis;
+    }
+
+    function downloadContents(listPairs) {
+      const element = document.getElementById("file-content");
+      element.innerHTML = listPairs.join("<br>");
+
+      const download = document.createElement("a");
+      download.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(listPairs.join("\n")));
+      download.setAttribute("download", "solution.txt");
+      download.style.display = "none";
+      document.body.appendChild(download);
+      download.click();
+      document.body.removeChild(download);
+    }
+  
+    const fileInput = document.getElementById("file-input");
+    if (fileInput)
+      fileInput.addEventListener("change", readSingleFile, false);
+  </script>
+</body>
+
+</html>
